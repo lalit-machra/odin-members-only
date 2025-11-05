@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { pool } from "./db/pool.js";
 import { signupRouter } from "./routes/signupRoute.js";
 import { loginRouter } from "./routes/loginRoute.js";
+import { membershipRouter } from "./routes/membershipRoute.js";
 import "./controllers/login.js";  // has configuration for passport
 
 dotenv.config();
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
 });
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
+app.use("/membership", membershipRouter);
 
 app.listen(3000, (err) => {
   if (err) {
