@@ -9,6 +9,7 @@ import { pool } from "./db/pool.js";
 import { signupRouter } from "./routes/signupRoute.js";
 import { loginRouter } from "./routes/loginRoute.js";
 import { membershipRouter } from "./routes/membershipRoute.js";
+import { messagesRouter } from "./routes/messagesRoute.js";
 import "./controllers/login.js";  // has configuration for passport
 
 dotenv.config();
@@ -40,11 +41,12 @@ app.use(passport.session());
 
 // Routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { user: req.user });
 });
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/membership", membershipRouter);
+app.use("/messages", messagesRouter);
 
 app.listen(3000, (err) => {
   if (err) {

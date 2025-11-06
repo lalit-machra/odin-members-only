@@ -6,11 +6,16 @@
   <title>Home</title>
 </head>
 <body>
-  <h1>Welcome</h1>
-  <a href="/signup">Sign Up</a>
-  <p>Or</p>
-  <a href="/login">Login</a>
-  <p>Get a membership today</p>
-  <a href="/membership">Become a member</a>
+  <% if(user) { %>
+    <h1>Welcome <%= user.firstname %> <%= user.lastname %></h1>
+    <a href="/messages">Create New Message</a>
+    <p>Get a membership today</p>
+    <a href="/membership">Become a member</a>
+  <%} else { %>
+    <h1>Welcome</h1>
+    <a href="/signup">Sign Up</a>
+    <p>Or</p>
+    <a href="/login">Login</a>  
+  <%}%>
 </body>
 </html>
