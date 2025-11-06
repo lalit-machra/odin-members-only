@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 4vh;
+  padding-bottom: 8vh;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+}
+
+.message {
+  border: 2px solid teal;
+}
+
+.message p {
+  font-size: 24px;
+}

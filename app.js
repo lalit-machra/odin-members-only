@@ -6,6 +6,7 @@ import getFunc from "connect-pg-simple";
 import dotenv from "dotenv";
 
 import { pool } from "./db/pool.js";
+import { indexRouter } from "./routes/indexRoute.js";
 import { signupRouter } from "./routes/signupRoute.js";
 import { loginRouter } from "./routes/loginRoute.js";
 import { membershipRouter } from "./routes/membershipRoute.js";
@@ -22,6 +23,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Session configuration
 const sessionStore = new Store({
@@ -40,9 +42,7 @@ app.use(session({
 app.use(passport.session());
 
 // Routes
-app.get("/", (req, res) => {
-  res.render("index", { user: req.user });
-});
+app.get("/", indexRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/membership", membershipRouter);

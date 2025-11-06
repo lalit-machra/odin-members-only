@@ -4,18 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-  <% if(user) { %>
-    <h1>Welcome <%= user.firstname %> <%= user.lastname %></h1>
-    <a href="/messages">Create New Message</a>
-    <p>Get a membership today</p>
-    <a href="/membership">Become a member</a>
-  <%} else { %>
-    <h1>Welcome</h1>
-    <a href="/signup">Sign Up</a>
-    <p>Or</p>
-    <a href="/login">Login</a>  
-  <%}%>
+  <div class="container">
+    <navbar>
+      <% if(user) { %>
+        <h1>Welcome <%= user.firstname %> <%= user.lastname %></h1>
+        <a href="/messages">Create New Message</a>
+        <p>Get a membership today</p>
+        <a href="/membership">Become a member</a>
+      <%} else { %>
+        <h1>Welcome</h1>
+        <a href="/signup">Sign Up</a>
+        <p>Or</p>
+        <a href="/login">Login</a>  
+      <%}%>
+    </navbar>
+    <div class="main">
+      <h1>Recent Posts</h1>
+      <div class="messages">
+        <% messages.forEach(message => { %>
+          <div class="message">
+            <h2><%= message.title %></h2>
+            <p><%= message.content %></p>
+            <% if(member || admin) { %>
+              <h3>by <%= message.author %></h3>
+              <h3><%= message.timestamp %></h3>
+              <% if (admin) { %>
+                <button class="deleteBtn"%>">Delete</button>
+              <%} %>
+            <%} %>
+          </div>
+        <%}) %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
